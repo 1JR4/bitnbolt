@@ -1,6 +1,4 @@
-# FreshPaper-1
-
-[CUSTOMIZE: Replace with your project name and description]
+# BitNBolt
 
 Provider-agnostic web and mobile application with comprehensive AI agent ecosystem for seamless development.
 
