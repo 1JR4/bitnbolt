@@ -1,10 +1,13 @@
 import { NumberTicker } from "@/components/magicui/number-ticker";
-import { BentoGrid } from "@/components/magicui/bento-grid";
-import { Marquee } from "@/components/magicui/marquee";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Star, Users, Zap, Shield, Bot, MessageSquare, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Bot, MessageSquare, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { WebsiteBenchmark } from "@/components/home/website-benchmark";
+import { WhyWebsiteMatters } from "@/components/home/why-website-matters";
+import { BreakFreePlatforms } from "@/components/home/break-free-platforms";
+import { CostOfOutdated } from "@/components/home/cost-of-outdated";
+import { SocialProofCTA } from "@/components/home/social-proof-cta";
 
 export default function Home() {
   return (
@@ -159,136 +162,20 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Module 1: Website Benchmark Analyzer */}
+      <WebsiteBenchmark />
 
-      {/* USP Grid Section */}
-      <section className="py-24 px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Everything you need to succeed online
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Built specifically for small and mid-sized businesses who want powerful features without complexity.
-            </p>
-          </div>
-          <BentoGrid className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-card text-card-foreground p-8 rounded-xl border hover:shadow-lg transition-shadow">
-              <Users className="h-8 w-8 text-blue-600 mb-4" />
-              <h3 className="font-semibold mb-2 text-lg">Built for SMBs</h3>
-              <p className="text-sm text-muted-foreground">Designed for owners, not IT departments. No clutter. No learning cliff.</p>
-            </div>
-            <div className="bg-card text-card-foreground p-8 rounded-xl border hover:shadow-lg transition-shadow">
-              <Zap className="h-8 w-8 text-purple-600 mb-4" />
-              <h3 className="font-semibold mb-2 text-lg">Conversational control</h3>
-              <p className="text-sm text-muted-foreground">Update pages, change copy, add sections by chatting with the site.</p>
-            </div>
-            <div className="bg-card text-card-foreground p-8 rounded-xl border hover:shadow-lg transition-shadow">
-              <ArrowRight className="h-8 w-8 text-green-600 mb-4" />
-              <h3 className="font-semibold mb-2 text-lg">Lightning fast</h3>
-              <p className="text-sm text-muted-foreground">Clean components, smart caching, and speed scores that win clicks.</p>
-            </div>
-            <div className="bg-card text-card-foreground p-8 rounded-xl border hover:shadow-lg transition-shadow">
-              <Check className="h-8 w-8 text-emerald-600 mb-4" />
-              <h3 className="font-semibold mb-2 text-lg">Conversion first</h3>
-              <p className="text-sm text-muted-foreground">Clear calls to action, proven layouts, and tested patterns.</p>
-            </div>
-            <div className="bg-card text-card-foreground p-8 rounded-xl border hover:shadow-lg transition-shadow">
-              <Shield className="h-8 w-8 text-orange-600 mb-4" />
-              <h3 className="font-semibold mb-2 text-lg">Transparent pricing</h3>
-              <p className="text-sm text-muted-foreground">Simple plans that scale with you. No surprise add-ons.</p>
-            </div>
-            <div className="bg-card text-card-foreground p-8 rounded-xl border hover:shadow-lg transition-shadow">
-              <Star className="h-8 w-8 text-yellow-600 mb-4" />
-              <h3 className="font-semibold mb-2 text-lg">Optimized templates</h3>
-              <p className="text-sm text-muted-foreground">Templates tested for SEO, UI, UX, content clarity, and speed.</p>
-            </div>
-          </BentoGrid>
-        </div>
-      </section>
+      {/* Module 2: Why a Website Matters */}
+      <WhyWebsiteMatters />
 
-      {/* No Website Section */}
-      <section className="py-24 px-8 bg-muted/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            No site yet? Here's why it matters.
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            <div className="space-y-2">
-              <div className="text-2xl font-bold text-blue-600">Ownership</div>
-              <p className="text-sm text-muted-foreground">Your digital presence</p>
-            </div>
-            <div className="space-y-2">
-              <div className="text-2xl font-bold text-purple-600">Trust</div>
-              <p className="text-sm text-muted-foreground">Professional credibility</p>
-            </div>
-            <div className="space-y-2">
-              <div className="text-2xl font-bold text-green-600">Findability</div>
-              <p className="text-sm text-muted-foreground">Search visibility</p>
-            </div>
-            <div className="space-y-2">
-              <div className="text-2xl font-bold text-orange-600">Control</div>
-              <p className="text-sm text-muted-foreground">Your message, your way</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <div className="bg-card p-6 rounded-lg border">
-              <div className="text-3xl font-bold text-blue-600 mb-2">2x</div>
-              <p className="text-sm text-muted-foreground">More leads with a clear website vs social only</p>
-            </div>
-            <div className="bg-card p-6 rounded-lg border">
-              <div className="text-3xl font-bold text-purple-600 mb-2">80%</div>
-              <p className="text-sm text-muted-foreground">Buyers research online before reaching out</p>
-            </div>
-          </div>
-          <Button size="lg" asChild>
-            <Link href="/contact">Launch my site</Link>
-          </Button>
-        </div>
-      </section>
+      {/* Module 3: Break Free from Big Platforms */}
+      <BreakFreePlatforms />
 
-      {/* Speed Showcase */}
-      <section className="py-24 px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Speed that converts
-          </h2>
-          <div className="bg-card border rounded-xl p-8 mb-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div className="space-y-4">
-                <div className="text-sm text-muted-foreground">Before</div>
-                <div className="text-4xl font-bold text-red-500">5.4s</div>
-                <div className="text-sm text-muted-foreground">to first paint</div>
-              </div>
-              <div className="space-y-4">
-                <div className="text-sm text-muted-foreground">After</div>
-                <div className="text-4xl font-bold text-green-500">1.2s</div>
-                <div className="text-sm text-muted-foreground">to first paint</div>
-              </div>
-            </div>
-          </div>
-          <p className="text-muted-foreground mb-8">
-            Every millisecond matters. Fast sites rank better, convert more, and keep visitors engaged.
-          </p>
-        </div>
-      </section>
+      {/* Module 4: The Cost of a Sh*tty Website */}
+      <CostOfOutdated />
 
-      {/* Lead Capture Band */}
-      <section className="py-16 px-8 bg-gradient-to-r from-blue-600/10 to-purple-600/10 border-y">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4">Get the starter kit</h2>
-          <p className="text-muted-foreground mb-6">
-            Free guide to launching your SMB website. One page. 10 minutes. Real impact.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-2 border border-input rounded-lg bg-background"
-            />
-            <Button>Get the guide</Button>
-          </div>
-        </div>
-      </section>
+      {/* Social Proof + Closing CTA */}
+      <SocialProofCTA />
     </div>
   );
 }
