@@ -59,7 +59,7 @@ export function CostOfOutdated() {
               <div key={index} className="relative">
                 <ShineBorder
                   className="relative overflow-hidden bg-background/80 backdrop-blur-sm"
-                  color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+                  shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
                 >
                   <div className="p-8">
                     <Meteors number={10} />
