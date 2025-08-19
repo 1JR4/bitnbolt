@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { analyzeWebsite } from '@/lib/website-analyzer'
+import { analyzeWebsiteWithGitHubTools } from '@/lib/github-based-analyzer'
 
 export async function POST(request: NextRequest) {
   try {
@@ -34,16 +35,34 @@ export async function POST(request: NextRequest) {
     // Limit to 6 total sites for performance
     const urlsToAnalyze = validUrls.slice(0, 6)
 
-    // Analyze all websites in parallel
-    const analysisPromises = urlsToAnalyze.map(url => 
-      analyzeWebsite(url).catch(error => ({
-        url,
-        error: error.message,
-        scores: null,
-        details: null,
-        fixesTop3: []
-      }))
-    )
+    // Choose analysis method based on environment
+    const useRealAnalysis = process.env.ENABLE_REAL_ANALYSIS === 'true'
+    const analyzer = useRealAnalysis ? analyzeWebsiteWithGitHubTools : analyzeWebsite
+    
+    console.log(`Analyzing ${urlsToAnalyze.length} websites using ${useRealAnalysis ? 'GitHub-based real' : 'mock'} analysis`)
+
+    // Analyze all websites in parallel (or sequential for real analysis to avoid overwhelming)
+    const analysisPromises = useRealAnalysis 
+      ? urlsToAnalyze.map(async (url, index) => {
+          // Sequential analysis to avoid overwhelming the system
+          await new Promise(resolve => setTimeout(resolve, index * 2000))
+          return analyzer(url).catch(error => ({
+            url,
+            error: error.message,
+            scores: null,
+            details: null,
+            fixesTop3: []
+          }))
+        })
+      : urlsToAnalyze.map(url => 
+          analyzer(url).catch(error => ({
+            url,
+            error: error.message,
+            scores: null,
+            details: null,
+            fixesTop3: []
+          }))
+        )
 
     const results = await Promise.all(analysisPromises)
 
