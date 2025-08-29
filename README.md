@@ -1,6 +1,11 @@
-# BitNBolt
+# BitNBoltDotCom
 
 Provider-agnostic web and mobile application with comprehensive AI agent ecosystem for seamless development.
+
+## 🚀 Integration Status - Testing Deployment
+- ✅ GitHub → Vercel connection established
+- ✅ Environment variables configured (Production)
+- 🧪 Testing automatic deployment pipeline...
 
 ## 🚨 Core Principle: NO OVER-ENGINEERING
 This project prioritizes working code over perfect architecture. We follow the **3-Strike Rule**: simplify, revert, replace.
@@ -9,33 +14,32 @@ This project prioritizes working code over perfect architecture. We follow the *
 
 ### Prerequisites
 - Node.js 20+
-- Firebase CLI
+- Supabase CLI
 - GitHub CLI
 
 ### 1. Initialize New Project
 ```bash
 # Copy this template to your desired location
-cp -r templates/freshpaper-1 /path/to/your/new-project
+cp -r templates/bitnboltdotcom /path/to/your/new-project
 cd /path/to/your/new-project
 
 # Initialize git repository
 git init
 git add .
-git commit -m "Initial commit from Flying Nimbus template"
+git commit -m "Initial commit from BitNBoltDotCom template"
 ```
 
-### 2. Configure Firebase
+### 2. Configure Supabase
 ```bash
-# Create new Firebase project at https://console.firebase.google.com
+# Create new Supabase project at https://supabase.com/dashboard
 # Then connect this project:
-firebase login
-firebase init
-# Select your new Firebase project
+npx supabase login
+npx supabase init
+npx supabase link --project-ref your-project-ref
 
-# Update firebase.json with your project ID:
-# "projects": {
-#   "default": "your-new-project-id"
-# }
+# Update your .env with Supabase credentials:
+# SUPABASE_URL=https://your-project.supabase.co
+# SUPABASE_ANON_KEY=your-anon-key
 ```
 
 ### 3. Setup GitHub Repository
@@ -55,7 +59,7 @@ git push -u origin main
 cp .env.example .env
 
 # Update .env with your values:
-# - Firebase configuration
+# - Supabase configuration
 # - JWT secrets
 # - API keys
 # - Database URLs
@@ -99,7 +103,7 @@ This project includes 8 specialized Claude Code agents:
 
 ### Essential Configuration
 - [ ] Update project name in package.json
-- [ ] Configure Firebase project ID
+- [ ] Configure Supabase project
 - [ ] Set up GitHub repository  
 - [ ] Update environment variables
 - [ ] Customize README.md with project details
@@ -113,7 +117,7 @@ This project includes 8 specialized Claude Code agents:
 
 ### Security Setup
 - [ ] Generate new JWT secrets
-- [ ] Configure Firebase security rules
+- [ ] Configure Supabase RLS policies
 - [ ] Set up proper CORS policies
 - [ ] Review and update .gitignore
 - [ ] Configure environment-specific secrets
@@ -149,14 +153,14 @@ See `MCP_INTEGRATION_GUIDE.md` for detailed configuration and usage examples.
 - **Backend**: Node.js, TypeScript, GraphQL
 - **Web**: Hotwire (Turbo + Stimulus) with Tailwind CSS
 - **Mobile**: React Native (planned)
-- **Database**: Firebase (provider-agnostic with Supabase ready)
+- **Database**: Supabase (provider-agnostic with Firebase ready)
 - **CI/CD**: GitHub Actions
-- **Hosting**: Firebase Hosting
+- **Hosting**: Vercel
 - **Testing**: BDD-first with Cucumber + Playwright
 
 ### Provider Agnostic Design
-- Current: Firebase backend
-- Future: Easily switchable to AWS, Azure, Supabase or other providers
+- Current: Supabase backend
+- Future: Easily switchable to AWS, Azure, Firebase or other providers
 - All external services abstracted via interfaces
 - MCP servers provide multiple provider options
 
