@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer'
+import type { Browser, Page } from 'puppeteer'
 import lighthouse from 'lighthouse'
 import * as cheerio from 'cheerio'
 import { WebsiteAnalysisResult } from './website-analyzer'
@@ -8,7 +9,7 @@ import { WebsiteAnalysisResult } from './website-analyzer'
  * This version actually runs real analysis - use with caution in production
  */
 export async function analyzeWebsiteReal(url: string): Promise<WebsiteAnalysisResult> {
-  let browser: puppeteer.Browser | null = null
+  let browser: Browser | null = null
   
   try {
     console.log(`Starting real analysis for: ${url}`)
@@ -55,17 +56,7 @@ export async function analyzeWebsiteReal(url: string): Promise<WebsiteAnalysisRe
       output: 'json',
       logLevel: 'error',
       onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
-      settings: {
-        formFactor: 'mobile',
-        throttling: {
-          rttMs: 40,
-          throughputKbps: 10 * 1024,
-          cpuSlowdownMultiplier: 1,
-          requestLatencyMs: 0,
-          downloadThroughputKbps: 0,
-          uploadThroughputKbps: 0
-        }
-      }
+      formFactor: 'mobile'
     })
 
     console.log('Lighthouse analysis completed')
@@ -280,12 +271,12 @@ function calculateReadability($: cheerio.CheerioAPI): number {
   return sentences > 0 ? Math.min(100, Math.max(0, 100 - (words / sentences - 15) * 2)) : 50
 }
 
-async function countNetworkRequests(page: puppeteer.Page): Promise<number> {
+async function countNetworkRequests(page: Page): Promise<number> {
   // This would require intercepting network requests during page load
   return 64 // Placeholder
 }
 
-async function calculateTransferSize(page: puppeteer.Page): Promise<number> {
+async function calculateTransferSize(page: Page): Promise<number> {
   // This would require summing all network transfer sizes
   return 1450 // Placeholder in KB
 }
