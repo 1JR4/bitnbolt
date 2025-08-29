@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -59,7 +60,13 @@ export function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600" />
+              <Image 
+                src="/bitnbolt.jpg" 
+                alt="BitNBolt Logo" 
+                width={32} 
+                height={32} 
+                className="rounded-lg"
+              />
               <span className="text-xl font-bold">BitNBolt</span>
             </Link>
 
