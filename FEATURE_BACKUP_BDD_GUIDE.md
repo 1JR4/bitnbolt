@@ -446,7 +446,7 @@ tar -czf backups-archive-$(date +%Y-%m).tar.gz backups/
 
 ### Template Structure Addition
 ```
-templates/freshpaper-X/
+templates/bitnboltdotcom/
 ├── backups/          # Feature backups
 ├── features/         # BDD test scenarios
 │   ├── step-definitions/

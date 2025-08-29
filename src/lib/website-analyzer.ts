@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer'
+import type { Browser, Page } from 'puppeteer'
 import lighthouse from 'lighthouse'
 import * as cheerio from 'cheerio'
 import axeCore from 'axe-core'
@@ -75,7 +76,7 @@ interface UIUXDetails {
 }
 
 export async function analyzeWebsite(url: string): Promise<WebsiteAnalysisResult> {
-  let browser: puppeteer.Browser | null = null
+  let browser: Browser | null = null
   
   try {
     // Normalize URL
@@ -204,7 +205,7 @@ async function runLighthouse(url: string) {
   }
 }
 
-async function analyzeSEO(page: puppeteer.Page, url: string): Promise<SEODetails> {
+async function analyzeSEO(page: Page, url: string): Promise<SEODetails> {
   const content = await page.content()
   const $ = cheerio.load(content)
   
@@ -254,7 +255,7 @@ async function analyzeSEO(page: puppeteer.Page, url: string): Promise<SEODetails
   }
 }
 
-async function analyzeSecurity(page: puppeteer.Page, url: string): Promise<SecurityDetails> {
+async function analyzeSecurity(page: Page, url: string): Promise<SecurityDetails> {
   const response = await page.goto(url, { waitUntil: 'domcontentloaded' })
   const headers = response?.headers() || {}
   
@@ -284,7 +285,7 @@ async function analyzeSecurity(page: puppeteer.Page, url: string): Promise<Secur
   }
 }
 
-async function analyzeUIUX(page: puppeteer.Page): Promise<UIUXDetails> {
+async function analyzeUIUX(page: Page): Promise<UIUXDetails> {
   // Inject axe-core and run accessibility audit
   await page.addScriptTag({
     content: axeCore.source

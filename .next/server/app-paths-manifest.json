@@ -1,3 +1,16 @@
 {
-  "/page": "app/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/compare/route": "app/api/compare/route.js",
+  "/contact/page": "app/contact/page.js",
+  "/page": "app/page.js",
+  "/faq/page": "app/faq/page.js",
+  "/tools/comparator/page": "app/tools/comparator/page.js",
+  "/tools/grader/page": "app/tools/grader/page.js",
+  "/blog/page": "app/blog/page.js",
+  "/pricing/page": "app/pricing/page.js",
+  "/about/page": "app/about/page.js",
+  "/blog/[slug]/page": "app/blog/[slug]/page.js",
+  "/tools/page": "app/tools/page.js",
+  "/services/page": "app/services/page.js",
+  "/testimonials/page": "app/testimonials/page.js"
 }

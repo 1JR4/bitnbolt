@@ -24,7 +24,7 @@ jobs:
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event.inputs.environment == 'staging')
     environment:
       name: staging
-      url: https://staging.flyingnimbustest.com
+      url: https://staging.bitnbolt.com
     steps:
       - uses: actions/checkout@v4
       
@@ -43,16 +43,18 @@ jobs:
       - name: Build for staging
         env:
           NODE_ENV: staging
-          FIREBASE_PROJECT: flyingnimbustest-staging
-        run: npm run build:staging
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL_STAGING }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY_STAGING }}
+        run: npm run build
       
-      - name: Deploy to Firebase Staging
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploy to Vercel Staging
+        uses: amondnet/vercel-action@v25
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_STAGING }}'
-          projectId: flyingnimbustest-staging
-          channelId: live
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: '--prod --scope bitnbolt'
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_STAGING }}
+          working-directory: '.'
       
       - name: Run E2E tests on staging
         run: npm run test:e2e:staging
@@ -72,7 +74,7 @@ jobs:
     if: github.event.inputs.environment == 'production' || (github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[deploy-prod]'))
     environment:
       name: production
-      url: https://flyingnimbustest.com
+      url: https://bitnbolt.com
     steps:
       - uses: actions/checkout@v4
       
@@ -91,21 +93,24 @@ jobs:
       - name: Build for production
         env:
           NODE_ENV: production
-          FIREBASE_PROJECT: flyingnimbustest
-        run: npm run build:production
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          CUSTOM_DOMAIN: bitnbolt.com
+        run: npm run build
       
       - name: Create backup
         run: |
           echo "Creating backup of current production..."
           npm run backup:production
       
-      - name: Deploy to Firebase Production
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploy to Vercel Production
+        uses: amondnet/vercel-action@v25
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          projectId: flyingnimbustest
-          channelId: live
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: '--prod --scope bitnbolt'
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: '.'
       
       - name: Smoke tests
         run: npm run test:smoke:production

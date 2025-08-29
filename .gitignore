@@ -28,3 +28,4 @@ yarn-error.log*
 
 # Service Account Keys
 firebase-service-account.json
+.vercel

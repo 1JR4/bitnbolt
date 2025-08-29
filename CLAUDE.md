@@ -1,4 +1,4 @@
-# AI Assistant Instructions - FreshPaper-1 Project
+# AI Assistant Instructions - BitNBoltDotCom Project
 
 ## 🎯 Project Overview
 This is a production-ready informational/marketing website template for small and mid-sized businesses (SMBs). Built with Next.js, React, Tailwind CSS, and leveraging MagicUI + 21st.dev components for modern, performant UI.

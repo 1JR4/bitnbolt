@@ -1,4 +1,4 @@
-# Project Status - FreshPaper-1 SMB Website Template
+# Project Status - BitNBoltDotCom SMB Website Template
 
 ## 📊 Current Status: Foundation Complete ✅
 
